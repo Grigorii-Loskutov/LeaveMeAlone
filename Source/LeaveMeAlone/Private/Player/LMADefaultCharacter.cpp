@@ -68,6 +68,7 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ALMADefaultCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ALMADefaultCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("CameraMove", this, &ALMADefaultCharacter::CameraMove);
 }
 
 void ALMADefaultCharacter::MoveForward(float Value)
@@ -78,4 +79,15 @@ void ALMADefaultCharacter::MoveForward(float Value)
 void ALMADefaultCharacter::MoveRight(float Value)
 {
 	AddMovementInput(GetActorRightVector(), Value);
+	// UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
+}
+
+void ALMADefaultCharacter::CameraMove(float Value)
+{
+
+	float NewArmLength = SpringArmComponent->TargetArmLength - (Value * ZoomSpeed);
+	NewArmLength = FMath::Clamp(NewArmLength, MinArmLength, MaxArmLength);
+	
+	SpringArmComponent->TargetArmLength = NewArmLength;
+	//UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
 }
