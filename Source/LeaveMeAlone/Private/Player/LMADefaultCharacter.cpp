@@ -2,6 +2,8 @@
 
 #include "Player/LMADefaultCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/LMAHealthComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/DecalComponent.h"
 #include "Components/InputComponent.h"
@@ -30,6 +32,8 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+
+	HealthComponent = CreateDefaultSubobject<ULMAHealthComponent>("HealthComponent");
 }
 
 // Called when the game starts or when spawned
@@ -40,6 +44,10 @@ void ALMADefaultCharacter::BeginPlay()
 	{
 		CurrentCursor = UGameplayStatics::SpawnDecalAtLocation(GetWorld(), CursorMaterial, CursorSize, FVector(0));
 	}
+
+	//OnHealthChanged(HealthComponent->GetHealth());
+	HealthComponent->OnDeath.AddUObject(this, &ALMADefaultCharacter::OnDeath);
+	//HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
 }
 
 // Called every frame
@@ -87,7 +95,23 @@ void ALMADefaultCharacter::CameraMove(float Value)
 
 	float NewArmLength = SpringArmComponent->TargetArmLength - (Value * ZoomSpeed);
 	NewArmLength = FMath::Clamp(NewArmLength, MinArmLength, MaxArmLength);
-	
+
 	SpringArmComponent->TargetArmLength = NewArmLength;
-	//UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
+	// UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
+}
+
+void ALMADefaultCharacter::OnDeath()
+{
+	//CurrentCursor->DestroyRenderState_Concurrent();
+
+	PlayAnimMontage(DeathMontage);
+
+	GetCharacterMovement()->DisableMovement();
+
+	SetLifeSpan(5.0f);
+	/*
+	if (Controller)
+	{
+		Controller->ChangeState(NAME_Spectating);
+	}*/
 }

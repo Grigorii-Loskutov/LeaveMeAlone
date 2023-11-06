@@ -10,6 +10,10 @@ class UCameraComponent;
 
 class USpringArmComponent;
 
+class ULMAHealthComponent;
+
+class UAnimMontage;
+
 UCLASS()
 class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 {
@@ -46,6 +50,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera", meta = (ClampMin = "600.0", ClampMax = "3000.0"))
 	float MaxArmLength = 2000.0f;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Health")
+	ULMAHealthComponent* HealthComponent;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage* DeathMontage;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -63,4 +73,6 @@ private:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	void CameraMove(float Value);
+
+	void OnDeath();
 };
