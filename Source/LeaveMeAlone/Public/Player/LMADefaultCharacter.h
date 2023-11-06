@@ -22,7 +22,7 @@ class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ALMADefaultCharacter();
-
+	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; }  
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -75,6 +75,7 @@ private:
 	void CameraMove(float Value);
 
 	void OnDeath();
+	void OnHealthChanged(float NewHealth);
 
 	void RotationPlayerOnCursor();
 };

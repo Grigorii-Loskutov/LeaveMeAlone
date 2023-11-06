@@ -2,13 +2,14 @@
 
 #include "Player/LMADefaultCharacter.h"
 #include "Camera/CameraComponent.h"
-#include "Components/LMAHealthComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/SpringArmComponent.h"
 #include "Components/DecalComponent.h"
 #include "Components/InputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Components/LMAHealthComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Engine/Engine.h"
 
 // Sets default values
 ALMADefaultCharacter::ALMADefaultCharacter()
@@ -45,9 +46,9 @@ void ALMADefaultCharacter::BeginPlay()
 		CurrentCursor = UGameplayStatics::SpawnDecalAtLocation(GetWorld(), CursorMaterial, CursorSize, FVector(0));
 	}
 
-	//OnHealthChanged(HealthComponent->GetHealth());
+	OnHealthChanged(HealthComponent->GetHealth());
 	HealthComponent->OnDeath.AddUObject(this, &ALMADefaultCharacter::OnDeath);
-	//HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
+	HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
 }
 
 // Called every frame
@@ -114,6 +115,11 @@ void ALMADefaultCharacter::OnDeath()
 	{
 		Controller->ChangeState(NAME_Spectating);
 	}
+}
+
+void ALMADefaultCharacter::OnHealthChanged(float NewHealth)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
 }
 
 void ALMADefaultCharacter::RotationPlayerOnCursor()
