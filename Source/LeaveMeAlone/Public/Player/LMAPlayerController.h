@@ -7,7 +7,7 @@
 #include "LMAPlayerController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class LEAVEMEALONE_API ALMAPlayerController : public APlayerController
@@ -19,5 +19,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-	
+
+	virtual void BeginSpectatingState() override;
 };

@@ -75,4 +75,6 @@ private:
 	void CameraMove(float Value);
 
 	void OnDeath();
+
+	void RotationPlayerOnCursor();
 };
