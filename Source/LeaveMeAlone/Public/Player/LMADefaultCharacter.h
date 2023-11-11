@@ -22,7 +22,8 @@ class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ALMADefaultCharacter();
-	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; }  
+	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; }
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -56,6 +57,31 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	UAnimMontage* DeathMontage;
 
+	// Для спринта
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Sprint")
+	bool bIsSprinting;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sprint")
+	float SprintSpeed;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sprint")
+	float DefaultWalkSpeed;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sprint")
+	float MaxStamina;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Sprint")
+	float CurrentStamina;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Sprint")
+	float StaminaCostPerSecond;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Sprint")
+	float StaminaRestorePerSecond;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsSprinting() const { return bIsSprinting; }
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -78,4 +104,11 @@ private:
 	void OnHealthChanged(float NewHealth);
 
 	void RotationPlayerOnCursor();
+
+	// Для спринта
+	void StartSprinting();
+	void StopSprinting();
+
+	void ConsumeStamina(float StaminaCost);	  // Потребление выносливости
+	void RestoreStamina(float StaminaAmount); // Восстановление выносливости
 };

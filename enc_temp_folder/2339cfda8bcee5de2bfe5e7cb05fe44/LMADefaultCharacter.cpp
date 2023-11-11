@@ -46,9 +46,9 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 
 	CurrentStamina = MaxStamina;
 
-	StaminaCostPerSecond = 15;
+	StaminaCostPerSecond = 5;
 
-	StaminaRestorePerSecond = 15;
+	StaminaRestorePerSecond = 5;
 }
 
 // Called when the game starts or when spawned
@@ -167,7 +167,7 @@ void ALMADefaultCharacter::RotationPlayerOnCursor()
 
 void ALMADefaultCharacter::StartSprinting()
 {
-	if (CurrentStamina > 5.0f) // Pflflbv gjh
+	if (CurrentStamina > 5.0f)
 	{
 		bIsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
@@ -193,7 +193,7 @@ void ALMADefaultCharacter::ConsumeStamina(float StaminaCost)
 	}
 	else
 	{
-		StopSprinting();
+		bIsSprinting = false;
 	}
 }
 
