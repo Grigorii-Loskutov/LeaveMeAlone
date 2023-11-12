@@ -17,7 +17,7 @@ class LEAVEMEALONE_API ULMAWeaponComponent : public UActorComponent
 public:
 	ULMAWeaponComponent();
 
-	//void Fire();
+	void Fire();
 	//void Reload();
 
 protected:

@@ -54,7 +54,6 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 
 	// Оружие
 	WeaponComponent = CreateDefaultSubobject<ULMAWeaponComponent>("Weapon");
-
 }
 
 // Called when the game starts or when spawned
@@ -111,6 +110,9 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	// Приявяжем спринт
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &ALMADefaultCharacter::StartSprinting);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALMADefaultCharacter::StopSprinting);
+
+	// Привяжем оружие
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
 }
 
 void ALMADefaultCharacter::MoveForward(float Value)
