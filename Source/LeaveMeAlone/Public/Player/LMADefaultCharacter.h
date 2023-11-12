@@ -14,6 +14,8 @@ class ULMAHealthComponent;
 
 class UAnimMontage;
 
+class ULMAWeaponComponent;
+
 UCLASS()
 class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 {
@@ -81,6 +83,10 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsSprinting() const { return bIsSprinting; }
+
+	// Оружие
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	ULMAWeaponComponent* WeaponComponent;
 
 public:
 	// Called every frame

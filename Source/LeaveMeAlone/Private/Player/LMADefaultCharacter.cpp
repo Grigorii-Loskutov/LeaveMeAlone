@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Components/LMAHealthComponent.h"
+#include "Components/LMAWeaponComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/Engine.h"
 
@@ -36,6 +37,7 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 
 	HealthComponent = CreateDefaultSubobject<ULMAHealthComponent>("HealthComponent");
 
+	// Спринт
 	bIsSprinting = false;
 
 	SprintSpeed = 600;
@@ -49,6 +51,10 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 	StaminaCostPerSecond = 10;
 
 	StaminaRestorePerSecond = 10;
+
+	// Оружие
+	WeaponComponent = CreateDefaultSubobject<ULMAWeaponComponent>("Weapon");
+
 }
 
 // Called when the game starts or when spawned
