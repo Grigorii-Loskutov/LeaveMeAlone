@@ -109,6 +109,13 @@ private:
 	void StartSprinting();
 	void StopSprinting();
 
-	void ConsumeStamina(float StaminaCost);	  // Потребление выносливости
-	void RestoreStamina(float StaminaAmount); // Восстановление выносливости
+	UFUNCTION()
+	void ConsumeStamina(); // Потребление выносливости
+
+	UFUNCTION()
+	void RestoreStamina(); // Восстановление выносливости
+
+	// Таймеры для вызова расчетов выносливости
+	FTimerHandle StaminaDecriaseTimer; 
+	FTimerHandle StaminaIncreaseTimer;
 };
