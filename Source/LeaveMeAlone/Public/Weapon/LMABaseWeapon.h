@@ -8,6 +8,8 @@
 
 class USkeletalMeshComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEmptyClipDelegate); // ƒелегат, который будет оповещать о том, что в обойме закончились боеприпасы
+
 USTRUCT(BlueprintType)
 struct FAmmoWeapon
 {
@@ -33,6 +35,10 @@ public:
 
 	void Fire();
 	void ChangeClip();
+
+	bool IsCurrentClipFull() const; // Ћогическа€ функци€ дл€ проверки полной обоймы
+
+	FEmptyClipDelegate OnEmptyClip; // ќбъ€вление делегата
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Weapon")

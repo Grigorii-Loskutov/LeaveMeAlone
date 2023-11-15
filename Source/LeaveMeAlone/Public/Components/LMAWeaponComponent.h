@@ -21,6 +21,10 @@ public:
 	void Reload();
 	void StartFire();
 	void StopFire();
+	void PerformReload();
+
+	UFUNCTION()
+	void OnEmptyClipReceived(); // Колбек-функция для уведомления от делегата
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")

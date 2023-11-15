@@ -57,6 +57,7 @@ void ULMAWeaponComponent::SpawnWeapon()
 			FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, false);
 			Weapon->AttachToComponent(Character->GetMesh(), AttachmentRules, "r_Weapon_Socket");
 		}
+		Weapon->OnEmptyClip.AddDynamic(this, &ULMAWeaponComponent::OnEmptyClipReceived);
 	}
 }
 
@@ -88,10 +89,21 @@ void ULMAWeaponComponent::OnNotifyReloadFinished(USkeletalMeshComponent* Skeleta
 
 bool ULMAWeaponComponent::CanReload() const
 {
-	return !AnimReloading /*&& Weapon->CanReload()*/;
+	return !AnimReloading && !Weapon->IsCurrentClipFull();
 }
 
 void ULMAWeaponComponent::Reload()
+{
+	PerformReload();
+}
+
+void ULMAWeaponComponent::OnEmptyClipReceived()
+{
+	StopFire(); // Для прекращения бесконечной стрельбы после перезарядки
+	PerformReload();
+}
+
+void ULMAWeaponComponent::PerformReload()
 {
 	if (!CanReload())
 		return;
@@ -99,4 +111,5 @@ void ULMAWeaponComponent::Reload()
 	ACharacter* Character = Cast<ACharacter>(GetOwner());
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, FString::Printf(TEXT("Reload")));
 	Character->PlayAnimMontage(ReloadMontage);
+	Weapon->ChangeClip();
 }
