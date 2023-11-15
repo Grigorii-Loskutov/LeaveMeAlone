@@ -19,6 +19,8 @@ public:
 
 	void Fire();
 	void Reload();
+	void StartFire();
+	void StopFire();
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
@@ -43,4 +45,6 @@ private:
 
 	void OnNotifyReloadFinished(USkeletalMeshComponent* SkeletalMesh);
 	bool CanReload() const;
+
+	FTimerHandle ShootingTimer; // Òאילונ הכÿ סענוכüבû
 };

@@ -112,7 +112,8 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALMADefaultCharacter::StopSprinting);
 
 	// Привяжем оружие
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::StartFire); // Нажатие - начало стрельбы
+	PlayerInputComponent->BindAction("Fire", IE_Released, WeaponComponent, &ULMAWeaponComponent::StopFire); // ОТпускание - завершение стрельббы
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, WeaponComponent,	&ULMAWeaponComponent::Reload);
 }
 
