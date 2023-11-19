@@ -113,3 +113,14 @@ void ULMAWeaponComponent::PerformReload()
 	Character->PlayAnimMontage(ReloadMontage);
 	Weapon->ChangeClip();
 }
+
+bool ULMAWeaponComponent::GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon)
+	const
+{
+	if (Weapon)
+	{
+		AmmoWeapon = Weapon->GetCurrentAmmoWeapon();
+		return true;
+	}
+	return false;
+}

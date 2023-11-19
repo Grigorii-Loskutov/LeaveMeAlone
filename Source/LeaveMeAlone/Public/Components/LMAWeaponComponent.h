@@ -33,6 +33,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	UAnimMontage* ReloadMontage;
 
+	UFUNCTION(BlueprintCallable)
+	bool GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon) const;
+
 	virtual void BeginPlay() override;
 
 public:

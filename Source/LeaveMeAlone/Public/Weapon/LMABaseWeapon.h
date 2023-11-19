@@ -40,6 +40,9 @@ public:
 
 	FEmptyClipDelegate OnEmptyClip; // Объявление делегата
 
+	FAmmoWeapon GetCurrentAmmoWeapon() const { return CurrentAmmoWeapon; }
+
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Weapon")
 	USkeletalMeshComponent* WeaponComponent;
