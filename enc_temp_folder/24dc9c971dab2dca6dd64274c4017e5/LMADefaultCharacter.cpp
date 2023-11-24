@@ -143,7 +143,6 @@ void ALMADefaultCharacter::CameraMove(float Value)
 void ALMADefaultCharacter::OnDeath()
 {
 	IsDead = true;
-	CurrentCursor->DestroyRenderState_Concurrent();
 
 	PlayAnimMontage(DeathMontage);
 
@@ -151,24 +150,10 @@ void ALMADefaultCharacter::OnDeath()
 
 	SetLifeSpan(5.0f);
 
-	float		 DelayTime = 0.1f; // Задержка в секундах
-	FTimerHandle SpectatingTimerHandle;
-
-	GetWorldTimerManager().SetTimer(
-		SpectatingTimerHandle, [this]() {
-			if (Controller)
-			{
-				Controller->ChangeState(NAME_Spectating);
-			}
-		},
-		DelayTime, false);
-
-	/*
 	if (Controller)
 	{
 		Controller->ChangeState(NAME_Spectating);
 	}
-	*/
 }
 
 void ALMADefaultCharacter::OnHealthChanged(float NewHealth)

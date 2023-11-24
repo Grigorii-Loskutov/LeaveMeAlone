@@ -88,6 +88,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	ULMAWeaponComponent* WeaponComponent;
 
+	// ”мер - не умер
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Status")
+	bool IsDead;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
