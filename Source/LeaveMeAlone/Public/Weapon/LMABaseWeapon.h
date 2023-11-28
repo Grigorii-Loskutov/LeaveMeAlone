@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "LMABaseWeapon.generated.h"
 
+class USoundWave;
+
 class USkeletalMeshComponent;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEmptyClipDelegate); // Делегат, который будет оповещать о том, что в обойме закончились боеприпасы
@@ -59,6 +61,9 @@ protected:
 
 	void DecrementBullets();
 	bool IsCurrentClipEmpty() const;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	USoundWave* ShootWave;
 
 public:
 	virtual void Tick(float DeltaTime) override;
