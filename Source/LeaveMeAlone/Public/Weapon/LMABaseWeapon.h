@@ -10,6 +10,8 @@ class USoundWave;
 
 class USkeletalMeshComponent;
 
+class UNiagaraSystem;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEmptyClipDelegate); // Делегат, который будет оповещать о том, что в обойме закончились боеприпасы
 
 USTRUCT(BlueprintType)
@@ -64,6 +66,14 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
 	USoundWave* ShootWave;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UNiagaraSystem* TraceEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	FString TraceName = "Tracer";
+
+	void	SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
 
 public:
 	virtual void Tick(float DeltaTime) override;
