@@ -46,7 +46,6 @@ public:
 
 	FAmmoWeapon GetCurrentAmmoWeapon() const { return CurrentAmmoWeapon; }
 
-
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Weapon")
 	USkeletalMeshComponent* WeaponComponent;
@@ -56,6 +55,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
 	FAmmoWeapon AmmoWeapon{ 30, 0, true };
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	float Damage = 20.0f;
 
 	virtual void BeginPlay() override;
 
@@ -73,7 +75,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
 	FString TraceName = "Tracer";
 
-	void	SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
+	void SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
+
+	void MakeDamage(const FHitResult& HitResult);
 
 public:
 	virtual void Tick(float DeltaTime) override;

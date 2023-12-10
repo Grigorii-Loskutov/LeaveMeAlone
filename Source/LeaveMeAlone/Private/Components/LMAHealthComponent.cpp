@@ -48,6 +48,8 @@ void ULMAHealthComponent::OnTakeAnyDamage(AActor* DamagedActor, float Damage, co
 		return;
 
 	Health = FMath::Clamp(Health - Damage, 0.0f, MaxHealth);
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health: %f"), Health));
+
 	OnHealthChanged.Broadcast(Health);
 
 	if (IsDead())

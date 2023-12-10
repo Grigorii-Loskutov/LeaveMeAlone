@@ -17,6 +17,7 @@ ALMAEnemyCharacter::ALMAEnemyCharacter()
 void ALMAEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	//this->TakeDamage(50.0f, FDamageEvent(), Controller, this);
 	
 }
 

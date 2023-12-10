@@ -5,6 +5,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Enemy/LMAEnemyCharacter.h"
+#include "Components/ActorComponent.h"
+#include "LMAHealthComponent.generated.h"
+#include "Player/LMAPlayerController.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
 
@@ -52,6 +56,7 @@ void ALMABaseWeapon::Shoot()
 	if (HitResult.bBlockingHit)
 	{
 		//DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 5.0f, 24, FColor::Red, false, 1.0f);
+		MakeDamage(HitResult);
 		TracerEnd = HitResult.ImpactPoint;
 	}
 	SpawnTrace(TraceStart, TracerEnd);
@@ -89,4 +94,20 @@ bool ALMABaseWeapon::IsCurrentClipFull() const
 void ALMABaseWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ALMABaseWeapon::MakeDamage(const FHitResult& HitResult)
+{
+	
+	AActor* Zombie = HitResult.GetActor();
+	if (!Zombie)
+		return;
+	auto Pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (!Pawn)
+		return;
+	ALMAPlayerController* Controller = Pawn->GetController<ALMAPlayerController>();
+	if (!Controller)
+		return;
+	Zombie->TakeDamage(Damage, FDamageEvent(), Controller, this);
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("TakeDamage")));	
 }
