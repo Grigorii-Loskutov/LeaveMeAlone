@@ -102,12 +102,12 @@ void ALMABaseWeapon::MakeDamage(const FHitResult& HitResult)
 	AActor* Zombie = HitResult.GetActor();
 	if (!Zombie)
 		return;
-	auto Pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	const auto Pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 	if (!Pawn)
 		return;
-	ALMAPlayerController* Controller = Pawn->GetController<ALMAPlayerController>();
+	/*ALMAPlayerController**/const auto Controller = Pawn->GetController<ALMAPlayerController>();
 	if (!Controller)
 		return;
 	Zombie->TakeDamage(Damage, FDamageEvent(), Controller, this);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("TakeDamage")));	
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("TakeDamage")));	//Урон не наносится!
 }

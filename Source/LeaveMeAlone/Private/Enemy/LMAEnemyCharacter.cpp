@@ -17,13 +17,12 @@ ALMAEnemyCharacter::ALMAEnemyCharacter()
 void ALMAEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	//this->TakeDamage(50.0f, FDamageEvent(), Controller, this);
-	
+	this->TakeDamage(5.0f, FDamageEvent(), Controller, this);
 }
 
 // Called every frame
 void ALMAEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
 }
