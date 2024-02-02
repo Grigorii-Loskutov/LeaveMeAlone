@@ -109,5 +109,5 @@ void ALMABaseWeapon::MakeDamage(const FHitResult& HitResult)
 	if (!Controller)
 		return;
 	Zombie->TakeDamage(Damage, FDamageEvent(), Controller, this);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("TakeDamage")));	//Урон не наносится!
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("TakeDamage")));	//Урон не наносится!
 }
