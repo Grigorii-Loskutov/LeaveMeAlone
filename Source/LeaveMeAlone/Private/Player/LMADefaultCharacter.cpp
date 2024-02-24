@@ -55,7 +55,11 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 	// Оружие
 	WeaponComponent = CreateDefaultSubobject<ULMAWeaponComponent>("Weapon");
 
+	// Статус жизни
 	IsDead = false;
+
+	// Очки игрока
+	Score = 0;
 }
 
 // Called when the game starts or when spawned

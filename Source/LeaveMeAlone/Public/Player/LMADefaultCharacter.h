@@ -92,6 +92,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Status")
 	bool IsDead;
 
+	// Очки игрока
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	int Score;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -22,7 +22,7 @@ void ULMAWeaponComponent::Fire()
 
 void ULMAWeaponComponent::StartFire()
 {
-	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &ULMAWeaponComponent::Fire, 0.05f, true);
+	GetWorld()->GetTimerManager().SetTimer(ShootingTimer, this, &ULMAWeaponComponent::Fire, 0.1f, true);
 }
 
 void ULMAWeaponComponent::StopFire()
