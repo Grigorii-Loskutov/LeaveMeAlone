@@ -1,0 +1,187 @@
+{
+	"asset":
+	{
+		"version": "2.0",
+		"generator": "Unreal Engine 5.3.2"
+	},
+	"scene": 0,
+	"accessors": [
+		{
+			"bufferView": 0,
+			"count": 36,
+			"type": "SCALAR",
+			"componentType": 5121
+		},
+		{
+			"bufferView": 1,
+			"count": 24,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [ 0, -0.200001061, -6.51682015e-08 ],
+			"max": [ 4, 2.28881831e-07, 4 ]
+		},
+		{
+			"bufferView": 2,
+			"count": 24,
+			"type": "VEC3",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 3,
+			"count": 24,
+			"type": "VEC4",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 4,
+			"count": 24,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 5,
+			"count": 24,
+			"type": "VEC2",
+			"componentType": 5126
+		}
+	],
+	"buffers": [
+		{
+			"uri": "M_Bricks_Moss_Inst.bin",
+			"byteLength": 1380
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 36,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 288,
+			"byteOffset": 36,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 288,
+			"byteOffset": 324,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 384,
+			"byteOffset": 612,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 192,
+			"byteOffset": 996,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 192,
+			"byteOffset": 1188,
+			"target": 34962
+		}
+	],
+	"images": [
+		{
+			"uri": "M_Bricks_Moss_Inst_BaseColor.png"
+		},
+		{
+			"uri": "M_Bricks_Moss_Inst_MetallicRoughness.png"
+		},
+		{
+			"uri": "M_Bricks_Moss_Inst_Normal.png"
+		},
+		{
+			"uri": "M_Bricks_Moss_Inst_Occlusion.png"
+		}
+	],
+	"materials": [
+		{
+			"name": "M_Bricks_Moss_Inst",
+			"pbrMetallicRoughness":
+			{
+				"baseColorTexture":
+				{
+					"index": 0
+				},
+				"metallicRoughnessTexture":
+				{
+					"index": 1
+				}
+			},
+			"normalTexture":
+			{
+				"index": 2
+			},
+			"occlusionTexture":
+			{
+				"index": 3
+			},
+			"doubleSided": true
+		}
+	],
+	"meshes": [
+		{
+			"name": "Floor_400x400",
+			"primitives": [
+				{
+					"attributes":
+					{
+						"POSITION": 1,
+						"NORMAL": 2,
+						"TANGENT": 3,
+						"TEXCOORD_0": 4,
+						"TEXCOORD_1": 5
+					},
+					"indices": 0,
+					"material": 0
+				}
+			]
+		}
+	],
+	"nodes": [
+		{
+			"mesh": 0
+		}
+	],
+	"samplers": [
+		{
+			"minFilter": 9987,
+			"magFilter": 9729
+		}
+	],
+	"scenes": [
+		{
+			"nodes": [ 0 ]
+		}
+	],
+	"textures": [
+		{
+			"name": "M_Bricks_Moss_Inst_BaseColor",
+			"sampler": 0,
+			"source": 0
+		},
+		{
+			"name": "M_Bricks_Moss_Inst_MetallicRoughness",
+			"sampler": 0,
+			"source": 1
+		},
+		{
+			"name": "M_Bricks_Moss_Inst_Normal",
+			"sampler": 0,
+			"source": 2
+		},
+		{
+			"name": "M_Bricks_Moss_Inst_Occlusion",
+			"sampler": 0,
+			"source": 3
+		}
+	]
+}

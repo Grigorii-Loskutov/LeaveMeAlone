@@ -155,7 +155,7 @@ void ALMADefaultCharacter::OnDeath()
 
 	SetLifeSpan(5.0f);
 
-	float		 DelayTime = 0.9f; // Задержка в секундах
+	float		 DelayTime = 0.2f; // Задержка в секундах
 	FTimerHandle SpectatingTimerHandle;
 
 	GetWorldTimerManager().SetTimer(

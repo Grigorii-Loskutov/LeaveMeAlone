@@ -101,6 +101,7 @@ void ULMAWeaponComponent::OnEmptyClipReceived()
 {
 	StopFire(); // Для прекращения бесконечной стрельбы после перезарядки
 	PerformReload();
+	StopFire();
 }
 
 void ULMAWeaponComponent::PerformReload()
