@@ -119,12 +119,27 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	// Привяжем оружие
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::StartFire); // Нажатие - начало стрельбы
-	PlayerInputComponent->BindAction("Fire", IE_Released, WeaponComponent, &ULMAWeaponComponent::StopFire); // ОТпускание - завершение стрельббы
+	PlayerInputComponent->BindAction("Fire", IE_Released, WeaponComponent, &ULMAWeaponComponent::StopFire); // ОТпускание - завершение стрельбы
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Reload);
 }
 
 void ALMADefaultCharacter::MoveForward(float Value)
 {
+	// Включем спринт, только если персонаж двигается вперед
+	bool IsMoveForward_delay = IsMoveForward;
+	if (Value > 0) 
+	{
+		IsMoveForward = true;
+	}
+	else
+	{
+		IsMoveForward = false;
+	}
+	if (IsMoveForward_delay == true && IsMoveForward == false)
+	{
+		StopSprinting();
+	}
+	//
 	AddMovementInput(GetActorForwardVector(), Value);
 }
 
@@ -155,7 +170,7 @@ void ALMADefaultCharacter::OnDeath()
 
 	SetLifeSpan(5.0f);
 
-	float		 DelayTime = 0.2f; // Задержка в секундах
+	float		 DelayTime = 0.8f; // Задержка в секундах
 	FTimerHandle SpectatingTimerHandle;
 
 	GetWorldTimerManager().SetTimer(
@@ -178,7 +193,7 @@ void ALMADefaultCharacter::OnDeath()
 void ALMADefaultCharacter::OnHealthChanged(float NewHealth)
 {
 
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
+	// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
 }
 
 void ALMADefaultCharacter::RotationPlayerOnCursor()
@@ -199,7 +214,7 @@ void ALMADefaultCharacter::RotationPlayerOnCursor()
 
 void ALMADefaultCharacter::StartSprinting()
 {
-	if (CurrentStamina > StaminaCostPerSecond)
+	if ((CurrentStamina > StaminaCostPerSecond) && (IsMoveForward == true))
 	{
 		bIsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;

@@ -132,4 +132,6 @@ private:
 	// Таймеры для вызова расчетов выносливости
 	FTimerHandle StaminaDecriaseTimer; 
 	FTimerHandle StaminaIncreaseTimer;
+
+	bool IsMoveForward; // Признак движения вперед
 };
