@@ -219,7 +219,7 @@ void ALMADefaultCharacter::StartSprinting()
 		bIsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 		GetWorldTimerManager().SetTimer(StaminaDecriaseTimer, this, &ALMADefaultCharacter::ConsumeStamina, 1.0f, true);
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
+		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
 	}
 	else
 	{
@@ -232,8 +232,8 @@ void ALMADefaultCharacter::StopSprinting()
 	bIsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = DefaultWalkSpeed;
 	GetWorldTimerManager().SetTimer(StaminaIncreaseTimer, this, &ALMADefaultCharacter::RestoreStamina, 1.0f, true);
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Speed = %f"), GetCharacterMovement()->MaxWalkSpeed));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Speed = %f"), GetCharacterMovement()->MaxWalkSpeed));
 }
 
 void ALMADefaultCharacter::ConsumeStamina()
@@ -241,7 +241,7 @@ void ALMADefaultCharacter::ConsumeStamina()
 	if (bIsSprinting && CurrentStamina > 0)
 	{
 		CurrentStamina -= StaminaCostPerSecond;
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
+		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
 	}
 	else
 	{
@@ -255,7 +255,7 @@ void ALMADefaultCharacter::RestoreStamina()
 	if (!bIsSprinting && CurrentStamina < MaxStamina)
 	{
 		CurrentStamina = FMath::Min(CurrentStamina + StaminaCostPerSecond, MaxStamina);
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
+		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
 	}
 	else
 	{
