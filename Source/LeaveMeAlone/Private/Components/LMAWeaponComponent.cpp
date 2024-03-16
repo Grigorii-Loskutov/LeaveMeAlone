@@ -110,7 +110,7 @@ void ULMAWeaponComponent::PerformReload()
 		return;
 	AnimReloading = true;
 	ACharacter* Character = Cast<ACharacter>(GetOwner());
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, FString::Printf(TEXT("Reload")));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, FString::Printf(TEXT("Reload")));
 	Character->PlayAnimMontage(ReloadMontage);
 	Weapon->ChangeClip();
 }
