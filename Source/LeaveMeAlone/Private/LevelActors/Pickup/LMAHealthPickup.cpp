@@ -50,9 +50,8 @@ void ALMAHealthPickup::PickupWasTaken()
 {
 	SphereComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	GetRootComponent()->SetVisibility(false, true);
-
-	FTimerHandle RespawnTimerHandle;
-	GetWorldTimerManager().SetTimer(RespawnTimerHandle, this, &ALMAHealthPickup::RespawnPickup, RespawnTime);
+	//FTimerHandle RespawnTimerHandle;
+	//GetWorldTimerManager().SetTimer(RespawnTimerHandle, this, &ALMAHealthPickup::RespawnPickup, RespawnTime);
 }
 
 void ALMAHealthPickup::RespawnPickup()
