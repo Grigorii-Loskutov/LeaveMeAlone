@@ -91,16 +91,7 @@ void ALMADefaultCharacter::Tick(float DeltaTime)
 		if (CurrentCursor)
 		{
 			CurrentCursor->SetWorldLocation(ResultHit.Location);
-		} /*
-		if (bIsSprinting)
-		{
-			ConsumeStamina(StaminaCostPerSecond * DeltaTime);
-		}
-		else
-		{
-			// ¬ызов метода дл€ восстановлени€ выносливости после окончани€ спринта
-			RestoreStamina(StaminaRestorePerSecond * DeltaTime);
-		}*/
+		} 
 	}
 }
 
@@ -146,7 +137,6 @@ void ALMADefaultCharacter::MoveForward(float Value)
 void ALMADefaultCharacter::MoveRight(float Value)
 {
 	AddMovementInput(GetActorRightVector(), Value);
-	// UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
 }
 
 void ALMADefaultCharacter::CameraMove(float Value)
@@ -156,7 +146,6 @@ void ALMADefaultCharacter::CameraMove(float Value)
 	NewArmLength = FMath::Clamp(NewArmLength, MinArmLength, MaxArmLength);
 
 	SpringArmComponent->TargetArmLength = NewArmLength;
-	// UE_LOG(LogTemp, Display, TEXT("MouseWheel: %f"), Value);
 }
 
 void ALMADefaultCharacter::OnDeath()
@@ -181,19 +170,11 @@ void ALMADefaultCharacter::OnDeath()
 			}
 		},
 		DelayTime, false);
-
-	/*
-	if (Controller)
-	{
-		Controller->ChangeState(NAME_Spectating);
-	}
-	*/
 }
 
 void ALMADefaultCharacter::OnHealthChanged(float NewHealth)
 {
 
-	// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
 }
 
 void ALMADefaultCharacter::RotationPlayerOnCursor()
@@ -219,7 +200,6 @@ void ALMADefaultCharacter::StartSprinting()
 		bIsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 		GetWorldTimerManager().SetTimer(StaminaDecriaseTimer, this, &ALMADefaultCharacter::ConsumeStamina, 1.0f, true);
-		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
 	}
 	else
 	{
@@ -232,8 +212,6 @@ void ALMADefaultCharacter::StopSprinting()
 	bIsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = DefaultWalkSpeed;
 	GetWorldTimerManager().SetTimer(StaminaIncreaseTimer, this, &ALMADefaultCharacter::RestoreStamina, 1.0f, true);
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Sprint = %d"), bIsSprinting));
-	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Speed = %f"), GetCharacterMovement()->MaxWalkSpeed));
 }
 
 void ALMADefaultCharacter::ConsumeStamina()
@@ -241,7 +219,6 @@ void ALMADefaultCharacter::ConsumeStamina()
 	if (bIsSprinting && CurrentStamina > 0)
 	{
 		CurrentStamina -= StaminaCostPerSecond;
-		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
 	}
 	else
 	{
@@ -255,7 +232,6 @@ void ALMADefaultCharacter::RestoreStamina()
 	if (!bIsSprinting && CurrentStamina < MaxStamina)
 	{
 		CurrentStamina = FMath::Min(CurrentStamina + StaminaCostPerSecond, MaxStamina);
-		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Stamina = %f"), CurrentStamina));
 	}
 	else
 	{
