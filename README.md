@@ -59,3 +59,4 @@
 # Технологии
 - C++
 - Unreal Engine 5
+![Игровой момент](https://github.com/Grigorii-Loskutov/LeaveMeAlone/blob/main/Content/LMA%20Screenshot.png)
