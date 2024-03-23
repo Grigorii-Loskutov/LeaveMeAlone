@@ -1,3 +1,4 @@
+![Лого главного экрана](https://github.com/Grigorii-Loskutov/LeaveMeAlone/blob/main/Content/Logo2.png)
 # Проект «Игра LeaveMeAlone»
 
 Курсовой проект — компьютерная 3D игра на движке Unreal Engine. 
